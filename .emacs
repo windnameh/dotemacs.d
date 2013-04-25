@@ -17,6 +17,11 @@
              "/home/colors/.emacs.d/plugins/auto-complete/ac-dict")
 (ac-config-default)
 
+;;; llvm clang complete
+(add-to-list 'load-path
+             "/home/colors/.emacs.d/plugins/clang-complete")
+(load-library "clang-completion-mode")
+
 ;;; custom setup
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
