@@ -1,28 +1,65 @@
-;;; line number
+;;
+;; line number
+;;
 (global-linum-mode 1)
 (setq linum-format "%4d \u2502")
 
-;;; color-theme-solarized
+;;
+;; color-theme-solarized
+;;
 (add-to-list 'custom-theme-load-path
              "~/.emacs.d/plugins/themes/solarized")
 (load-theme 'solarized-dark t)
 (setq solarized-termcolors 256)
 ;;(setq solarized-degrade t)
 
-;;; auto-complete
+;;
+;; auto-complete
+;;
 (add-to-list 'load-path
-             "/home/colors/.emacs.d/plugins/auto-complete")
+             "~/.emacs.d/plugins/auto-complete")
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories
-             "/home/colors/.emacs.d/plugins/auto-complete/ac-dict")
+             "~/.emacs.d/plugins/auto-complete/ac-dict")
 (ac-config-default)
 
-;;; llvm clang complete
-(add-to-list 'load-path
-             "/home/colors/.emacs.d/plugins/clang-complete")
-(load-library "clang-completion-mode")
+;;
+;; llvm clang complete
+;;
+;(add-to-list 'load-path
+;             "/home/colors/.emacs.d/plugins/clang-complete")
+;(load-library "clang-completion-mode")
 
-;;; custom setup
+;;
+;; clang complete
+;;
+(add-to-list 'load-path
+	     "~/.emacs.d/plugins/emacs-clang-complete-async")
+(require 'auto-complete-clang-async)
+(defun ac-cc-mode-setup ()
+  (setq ac-clang-complete-executable
+	"~/.emacs.d/plugins/emacs-clang-complete-async/clang-complete")
+  (setq ac-sources '(ac-source-clang-async))
+  (ac-clang-launch-completion-process)
+)
+(defun my-ac-config ()
+  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+  (global-auto-complete-mode t))
+(my-ac-config)
+
+;;
+;; yasnippet
+;;
+(add-to-list 'load-path
+	     "~/.emacs.d/plugins/yasnippet")
+(require 'yasnippet)
+(yas-global-mode 1)
+
+
+;;
+;; custom setup
+;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

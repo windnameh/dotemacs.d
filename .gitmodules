@@ -1,3 +1,9 @@
 [submodule "plugins/themes/solarized"]
 	path = plugins/themes/solarized
 	url = https://github.com/sellout/emacs-color-theme-solarized.git
+[submodule "plugins/emacs-clang-complete-async"]
+	path = plugins/emacs-clang-complete-async
+	url = https://github.com/Golevka/emacs-clang-complete-async.git
+[submodule "plugins/yasnippet"]
+	path = plugins/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
